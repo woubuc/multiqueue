@@ -33,7 +33,7 @@ Out of the box Multiqueue uses the `default` queue, which has the default interv
 ## Error handling & retrying
 If something goes wrong, Multiqueue can try to run your function again. This may be useful if you are doing stuff that can fail sometimes, but succeed others (e.g. HTTP requests). The default queue does not retry, but when you create a custom queue you can set the retry limit to pretty much whatever you want.
 
-**Note:** Retries are added to the end of the queue.
+**Note:** Retries are removed from their position and re-added to the end of the queue.
 
 When a function in the queue fails, the error message is passed along to the callback function. The `err` argument in the callback function will be an array containing the error messages from each try.
 
@@ -75,7 +75,7 @@ multiqueue.queues
 
 This will return an object containing information about the queues.
 
-`console.log(multiq.queues);` will output:
+`console.log(multiq.queues);` will output (with only the `default` queue):
 
 ```
 {
