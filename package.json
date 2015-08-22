@@ -1,7 +1,7 @@
 {
   "name": "multiqueue",
   "version": "0.1.0",
-  "description": "Multiple queues",
+  "description": "A simple Node.JS function queuing module with multiple queues",
   "main": "index.js",
   "scripts": {
     "test": "node ./test/test.js"

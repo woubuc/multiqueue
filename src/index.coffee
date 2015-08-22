@@ -31,6 +31,23 @@ create = (id, interval = 1000, limit = 1) ->
 		last_called: 0
 		queue: []
 
+setInterval = (newInterval, id = 'default') ->
+
+	# Do nothing if interval is not a valid number
+	return false if not isFinite interval or interval < 1
+
+	# Set interval
+	q[id].interval = newInterval
+
+
+setLimit = (newLimit, id = 'default') ->
+
+	# Make sure limit is a number
+	return false if not isFinite limit or limit < 1
+
+	# Set interval
+	q[id].limit = newLimit
+
 
 
 
@@ -117,9 +134,12 @@ tryNext = (id) ->
 create 'default'
 
 module.exports =
-	create: create
 	add: add
+	create: create
+	setInterval: setInterval
+	setLimit: setLimit
 
+# Make queues accessible through `.queues`
 Object.defineProperty module.exports, 'queues',
 	get: ->
 		obj = {}
@@ -128,7 +148,17 @@ Object.defineProperty module.exports, 'queues',
 				interval: q[id].interval
 				length: q[id].queue.length
 				limit: q[id].limit
+
+				# Adds a new function to this queue
 				add: (fn, cb) ->
 					add fn, cb, id
+
+				# Sets the interval of this queue
+				setInterval: (newInterval) ->
+					setInterval newInterval, id
+
+				# Sets the retry limit of this queue
+				setLimit: (newLimit) ->
+					setLimit newLimit, id
 
 		return obj

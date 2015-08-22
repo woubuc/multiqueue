@@ -68,6 +68,32 @@ callback | Function | This will be called when the function has completed. It ha
 queueID  | String   | ID of the queue _(default: `'default'`)_
 
 
+### Set Interval
+```
+multiqueue.setInterval(interval [, queueID]);
+```
+
+This sets the interval of the specified queue
+
+Argument | Type   | Description
+---------|--------|-------------
+interval | Number | Interval in milliseconds between each function in the queue
+queueID  | String | ID of the queue _(default: `'default'`)_
+
+
+### Set Limit
+```
+multiqueue.setInterval(limit [, queueID]);
+```
+
+This sets the retry limit of the specified queue
+
+Argument | Type   | Description
+---------|--------|-------------
+limit    | Number | How many times to retry a failing function before returning an error
+queueID  | String | ID of the queue _(default: `'default'`)_
+
+
 ### Queues
 ```
 multiqueue.queues
@@ -83,12 +109,14 @@ This will return an object containing information about the queues.
 		interval: 1000,
 		length: 0,
 		limit: 1,
-		add: [Function]
+		add: [Function],
+		setInterval: [Function],
+		setLimit: [Function]
 	}
 }
 ```
 
-The `add` function in each queue object is the same as the main `multiqueue.add` function, except that you don't need the queueID argument.
+The functions in each queue object are the same as the main multiqueue functions of the same name, except that you don't need the queueID argument.
 
 ## Credits, copyright, etc
 Created by me. Feel free to use this code, change it, do whatever you want with it, all I ask is that you let me know cause I'm interested in seeing my code being used by others. Pull requests are welcome, as are ideas for new features, and be sure to report any problems or bugs so that I can fix them.
