@@ -34,7 +34,7 @@ create = (id, interval = 1000, limit = 1) ->
 setInterval = (newInterval, id = 'default') ->
 
 	# Do nothing if interval is not a valid number
-	return false if not isFinite interval or interval < 1
+	return false if not isFinite newInterval or newInterval < 1
 
 	# Set interval
 	q[id].interval = newInterval
@@ -43,9 +43,9 @@ setInterval = (newInterval, id = 'default') ->
 setLimit = (newLimit, id = 'default') ->
 
 	# Make sure limit is a number
-	return false if not isFinite limit or limit < 1
+	return false if not isFinite newLimit or newLimit < 1
 
-	# Set interval
+	# Set limit
 	q[id].limit = newLimit
 
 

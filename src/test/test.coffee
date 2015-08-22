@@ -32,6 +32,9 @@ handler = (err, result) ->
 
 multiq.add req, handler, 'myQ'
 
+multiq.setInterval 500, 'myQ'
+multiq.queues.default.setLimit 20
+console.log multiq.queues
 
 multiq.queues.default.add (callback) ->
 	a = 1 + 1
