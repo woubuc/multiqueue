@@ -129,6 +129,6 @@ Object.defineProperty module.exports, 'queues',
 				length: q[id].queue.length
 				limit: q[id].limit
 				add: (fn, cb) ->
-					add id, fn, cb
+					add fn, cb, id
 
 		return obj
