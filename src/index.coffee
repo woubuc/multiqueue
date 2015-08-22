@@ -8,14 +8,14 @@ t = -> new Date().getTime()
 #   id: string ID of the queue
 #   interval: time between executions
 #   limit: maximum tries
-create = (id, interval = 1000, limit = 10) ->
+create = (id, interval = 1000, limit = 1) ->
 
 	# Do nothing if queue already exists
 	return false if q[id]?
 
 	# Make sure interval and limit are numbers
 	interval = 1000 if not isFinite interval
-	limit = 10 if not isFinite limit
+	limit = 1 if not isFinite limit
 
 	# Interval must be larger than 0
 	interval = 1 if interval < 1
