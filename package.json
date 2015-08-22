@@ -4,6 +4,7 @@
   "description": "A simple Node.JS function queuing module with multiple queues",
   "main": "index.js",
   "scripts": {
+  	"postinstall": "gulp build",
     "test": "node ./test/test.js"
   },
   "author": "Wouter Buckens <wou.buc@gmail.com>",
