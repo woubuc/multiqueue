@@ -4,12 +4,12 @@
   "description": "A simple Node.JS function queuing module with multiple queues",
   "main": "index.js",
   "scripts": {
-  	"postinstall": "./node_modules/.bin/gulp build",
+  	"postinstall": "./node_modules/.bin/gulp compile",
     "test": "node ./test/test.js"
   },
   "author": "Wouter Buckens <wou.buc@gmail.com>",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "gulp": "^3.9.0",
     "gulp-coffee": "^2.3.1"
   }
