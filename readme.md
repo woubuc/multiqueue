@@ -9,16 +9,22 @@ A simple Node.JS function queuing module with multiple queues
 This module allows you to have multiple queues with functions that will be processed one at a time at a set interval. Each queue operates independently from the others.
 
 ## Basic Usage
-Require the module in your code
+
+Install the module through npm
 
 ```
+npm install multiqueue --save
+```
+
+Require the module in your code
+
+```Javascript
 var multiq = require('multiqueue');
 ```
 
-
 Add a function to the queue
 
-```
+```Javascript
 multiq.add(function(callback){
 	var a = 1 + 1; // Or you could, you know, do something useful instead
 	callback(false, a);
@@ -34,6 +40,24 @@ That's it, basically.
 ## Queues
 Out of the box Multiqueue uses the `default` queue, which has the default interval of 1 second.
 
+You can add a custom queue easily by using the `create` method.
+
+```Javascript
+multiq.create('myQueue');
+```
+
+This will create a new queue called `myQueue`. You can then use this queue by adding the queue ID as an additional parameter to the multiqueue functions.
+
+```Javascript
+multiq.add(function(callback){
+	var a = 1 + 1; // Or you could, you know, do something useful instead
+	callback(false, a);
+}, function(err, data){
+	console.log(data); // 2
+}, 'myQueue');
+```
+
+
 ## Error handling & retrying
 If something goes wrong, Multiqueue can try to run your function again. This may be useful if you are doing stuff that can fail sometimes, but succeed others (e.g. HTTP requests). The default queue does not retry, but when you create a custom queue you can set the retry limit to pretty much whatever you want.
 
@@ -45,7 +69,7 @@ When a function in the queue fails, the error message is passed along to the cal
 ## API
 
 ### Create
-```
+```Javascript
 multiqueue.create(queueID [, interval][, limit]);
 ```
 
@@ -59,7 +83,7 @@ limit    | Number | How many times to retry a failing function before returning 
 
 
 ### Add
-```
+```Javascript
 multiqueue.add(function, callback [, queueID]);
 ```
 
@@ -73,7 +97,7 @@ queueID  | String   | ID of the queue _(default: `'default'`)_
 
 
 ### Set Interval
-```
+```Javascript
 multiqueue.setInterval(interval [, queueID]);
 ```
 
@@ -86,7 +110,7 @@ queueID  | String | ID of the queue _(default: `'default'`)_
 
 
 ### Set Limit
-```
+```Javascript
 multiqueue.setInterval(limit [, queueID]);
 ```
 
@@ -99,7 +123,7 @@ queueID  | String | ID of the queue _(default: `'default'`)_
 
 
 ### Queues
-```
+```Javascript
 multiqueue.queues
 ```
 
@@ -107,7 +131,7 @@ This will return an object containing information about the queues.
 
 `console.log(multiq.queues);` will output (with only the `default` queue):
 
-```
+```Javascript
 {
 	default: {
 		interval: 1000,
