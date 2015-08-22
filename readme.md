@@ -2,7 +2,7 @@
 A simple Node.JS function queuing module with multiple queues
 
 ## What it does
-This module allows you to have multiple queues with functions that will be processed one at a time at a set interval. Each queue operates independantly from the others.
+This module allows you to have multiple queues with functions that will be processed one at a time at a set interval. Each queue operates independently from the others.
 
 ## Basic Usage
 Require the module in your code
