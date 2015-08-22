@@ -1,6 +1,10 @@
 # Multiqueue
 A simple Node.JS function queuing module with multiple queues
 
+[![NPM version](https://img.shields.io/npm/v/multiqueue.svg?style=flat-square)](https://www.npmjs.com/package/multiqueue)
+[![Dependencies](https://img.shields.io/david/woubuc/multiqueue.svg?style=flat-square)](https://david-dm.org/woubuc/multiqueue)
+[![Github issues](https://img.shields.io/github/issues/woubuc/multiqueue.svg?style=flat-square)](https://github.com/woubuc/multiqueue/issues)
+
 ## What it does
 This module allows you to have multiple queues with functions that will be processed one at a time at a set interval. Each queue operates independently from the others.
 
