@@ -1,5 +1,10 @@
 q = {}
 
+# Default config
+defaults =
+	interval: 1000
+	limit: 1
+
 # Helper functions
 #   t(): returns current timestamp
 t = -> new Date().getTime()
@@ -8,14 +13,14 @@ t = -> new Date().getTime()
 #   id: string ID of the queue
 #   interval: time between executions
 #   limit: maximum tries
-create = (id, interval = 1000, limit = 1) ->
+create = (id, interval, limit) ->
 
 	# Do nothing if queue already exists
 	return false if q[id]?
 
-	# Make sure interval and limit are numbers
-	interval = 1000 if not isFinite interval
-	limit = 1 if not isFinite limit
+	# Assign default values if interval or limit are not set (or are not numbers)
+	interval = defaults.interval if not isFinite interval
+	limit = defaults.interval if not isFinite limit
 
 	# Interval must be larger than 0
 	interval = 1 if interval < 1
@@ -31,6 +36,9 @@ create = (id, interval = 1000, limit = 1) ->
 		last_called: 0
 		queue: []
 
+# Sets interval of a specified queue
+#   newInterval: the new interval
+#   id: string ID of the queue
 setInterval = (newInterval, id = 'default') ->
 
 	# Do nothing if interval is not a valid number
@@ -39,7 +47,9 @@ setInterval = (newInterval, id = 'default') ->
 	# Set interval
 	q[id].interval = newInterval
 
-
+# Sets interval of a specified queue
+#   newLimit: the new limit
+#   id: string ID of the queue
 setLimit = (newLimit, id = 'default') ->
 
 	# Make sure limit is a number
@@ -47,6 +57,18 @@ setLimit = (newLimit, id = 'default') ->
 
 	# Set limit
 	q[id].limit = newLimit
+
+# Sets default interval for new queues
+#   interval: the default interval
+setDefaultInterval = (interval) ->
+	return if not isFinite interval or interval < 1
+	defaults.interval = interval
+
+# Sets default limit for new queues
+#   limit: the default limit
+setDefaultLimit = (limit) ->
+	return if not isFinite limit or limit < 1
+	defaults.limit = limit
 
 
 
@@ -138,6 +160,8 @@ module.exports =
 	create: create
 	setInterval: setInterval
 	setLimit: setLimit
+	setDefaultInterval: setDefaultInterval
+	setDefaultLimit: setDefaultLimit
 
 # Make queues accessible through `.queues`
 Object.defineProperty module.exports, 'queues',

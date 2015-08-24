@@ -1,5 +1,7 @@
-# This is no automated test script if you were expecting that
-# It is basically just a script that I use for testing my module
+###
+This is no automated test script if you were expecting that
+It is basically just a script that I use for testing new featues in my module
+###
 
 # Node modules
 fs = require 'fs'
@@ -8,37 +10,15 @@ http = require 'http'
 # Multiqueue
 multiq = require '../'
 
-# Add item to default queue
-multiq.create 'myQ', 100, 1
-
-req = (cb) ->
-	console.log this # `this` contains information about the queue and the function. Not sure I want to keep this but for now it'll do
-
-	r = http.get 'http://jsonplaceholder.typicode.com/posts/1', (res) ->
-		data = ''
-		res.on 'data', (d) ->
-			data += d
-
-		res.on 'end', ->
-			cb no, data
-
-	r.on 'error', cb
-
-handler = (err, result) ->
-	if err
-		return console.error err[err.length - 1]
-
-	console.log result
-
-multiq.add req, handler, 'myQ'
-
-multiq.setInterval 500, 'myQ'
-multiq.queues.default.setLimit 20
+# Default interval test
+multiq.setDefaultInterval 250
+multiq.create 'intervalTest'
 console.log multiq.queues
 
-multiq.queues.default.add (callback) ->
-	a = 1 + 1
-	callback false, a
-, (err, result) ->
-	console.log(result)
 
+multiq.queues.intervalTest.add ->
+	console.log 'yo1'
+multiq.queues.intervalTest.add ->
+	console.log 'yo2'
+multiq.queues.intervalTest.add ->
+	console.log 'yo3'
