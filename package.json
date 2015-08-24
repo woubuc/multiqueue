@@ -1,6 +1,6 @@
 {
   "name": "multiqueue",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "A simple Node.JS function queuing module with multiple queues",
   "keywords": [
     "queue",
@@ -10,7 +10,7 @@
     "timer"
   ],
   "main": "index.js",
-  "repository":{
+  "repository": {
     "type": "git",
     "url": "https://github.com/woubuc/multiqueue.git"
   },
@@ -19,7 +19,7 @@
     "prepublish": "./node_modules/.bin/gulp compile",
     "test": "node ./test/test.js"
   },
-  "author":{
+  "author": {
     "name": "Wouter Buckens",
     "email": "wou.buc@gmail.com"
   },
@@ -29,6 +29,6 @@
     "gulp-coffee": "^2.3.1"
   },
   "engines": {
-  	"node": ">=0.12"
+    "node": ">=0.12"
   }
 }
