@@ -1,8 +1,14 @@
 {
   "name": "multiqueue",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A simple Node.JS function queuing module with multiple queues",
-  "keywords":["queue", "queues", "multiple", "async", "timer"],
+  "keywords": [
+    "queue",
+    "queues",
+    "multiple",
+    "async",
+    "timer"
+  ],
   "main": "index.js",
   "scripts": {
     "prepublish": "./node_modules/.bin/gulp compile",
