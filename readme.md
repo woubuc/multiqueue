@@ -96,7 +96,9 @@ callback | Function | This will be called when the function has completed. It ha
 queueID  | String   | ID of the queue _(default: `'default'`)_
 
 
-### Set Interval
+### Queue Properties
+
+#### Set Interval
 ```Javascript
 multiqueue.setInterval(interval [, queueID]);
 ```
@@ -109,7 +111,7 @@ interval | Number | Interval in milliseconds between each function in the queue
 queueID  | String | ID of the queue _(default: `'default'`)_
 
 
-### Set Limit
+#### Set Limit
 ```Javascript
 multiqueue.setInterval(limit [, queueID]);
 ```
@@ -120,6 +122,32 @@ Argument | Type   | Description
 ---------|--------|-------------
 limit    | Number | How many times to retry a failing function before returning an error
 queueID  | String | ID of the queue _(default: `'default'`)_
+
+
+### Default Values
+
+#### Set Default Interval
+```Javascript
+multiqueue.setDefaultInterval(interval);
+```
+
+This sets the default interval for new queues
+
+Argument | Type   | Description
+---------|--------|-------------
+interval | Number | Interval in milliseconds between each function in the queue
+
+
+#### Set Default Limit
+```Javascript
+multiqueue.setDefaultLimit(limit);
+```
+
+This sets the default limit for new queues
+
+Argument | Type   | Description
+---------|--------|-------------
+limit    | Number | How many times to retry a failing function before returning an error
 
 
 ### Queues
