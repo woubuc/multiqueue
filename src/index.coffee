@@ -20,7 +20,7 @@ create = (id, interval, limit) ->
 
 	# Assign default values if interval or limit are not set (or are not numbers)
 	interval = defaults.interval if not isFinite interval
-	limit = defaults.interval if not isFinite limit
+	limit = defaults.limit if not isFinite limit
 
 	# Interval must be larger than 0
 	interval = 1 if interval < 1
